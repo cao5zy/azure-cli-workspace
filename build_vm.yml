@@ -1,0 +1,20 @@
+---
+- name: build azure vm
+  hosts: localhost
+  become: True
+  become_method: sudo
+
+  tasks:
+  - name: build vm
+    azure_rm_virtualmachine:
+      resource_group: "automation"
+      name: "alanvm1"
+      managed_disk_type: "Standard_LRS"
+      admin_username: "caozon"
+      ssh_public_keys:
+        - path: /home/caozon/.ssh/authorized_keys
+          key_data: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJr9w8VuQGO5XCkyuCjFtMhkjw6d2Bij0xBr4BV1bEpu7rQDs2Kaw1/Zfz87Xns/zyHId1WvUjvk7TuvFqpLaefY7LNJ2lgH4LjDguFn6jyrGhc6N4hx3pfknsu9yMlAqpam90GSYjSG2Gs5vVb+IMlxa/5Z45dgEb3Ny9hreD+Af8EYJgfMPljznwOt1lUYchTtsQvhhQjChcjlfxT5+QtoMYilatwlRbep3OvD3GJh/ZNwU4ZCR2ACG9HoHoHwTiwBg7o9E/iqONrnU25UX5hWrslUHu12wA8Ctl0yYIChOtfERPn6E8Ve4l+MM4PiyHyJYDf4NPSlI3srLagMXD from dxc node5 caozon
+      image:
+        sku: B1s
+
+...
